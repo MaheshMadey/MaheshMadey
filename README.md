@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Mahesh Madey</h1>
-<h3 align="center">2nd year B.Tech CSE student at SRMIST.</h3>
+<h3 align="center">A Software Engineer loves to experiment on new tech</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=maheshmadey&label=Profile%20views&color=0e75b6&style=flat" alt="maheshmadey" /> </p>
 
