@@ -1,20 +1,51 @@
-<h1 align="center">Hi 👋, I'm Mahesh Madey</h1>
-<h3 align="center">A Software Engineer loves to experiment on new tech</h3>
+<div align="center">
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=maheshmadey&label=Profile%20views&color=0e75b6&style=flat" alt="maheshmadey" /> </p>
+# Mahesh Madey
 
-- 🌱 I’m currently learning **AI/ML, JavaScript**
+### Software Engineer &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; AI/ML
 
-- 📫 How to reach me **maheshmadey24@gmail.com**
+2 years building production software at **Siemens**
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://instagram.com/mahesh_madey24" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="mahesh_madey24" height="30" width="40" /></a>
-</p>
+[![Email](https://img.shields.io/badge/maheshmadey24@gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:maheshmadey24@gmail.com)
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-line.svg" alt="photoshop" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+</div>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=maheshmadey&show_icons=true&locale=en" alt="maheshmadey" /></p>
+---
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=maheshmadey&" alt="maheshmadey" /></p>
+### About
+
+Software engineer with hands-on experience shipping full-stack web applications and AI-powered tools. I work across the stack — from Express APIs and Python backends to React frontends — and I'm particularly interested in integrating LLMs into real products.
+
+---
+
+### Featured Project
+
+**[AI Chatbot](https://github.com/MaheshMadey/chatbot)** &nbsp;·&nbsp; [Live Demo](https://maheshmadey.github.io/chatbot)
+
+Conversational AI web app powered by Google Gemini 2.5 Flash. Built a React frontend with Tailwind CSS and a Node.js/Express backend, deployed end-to-end with GitHub Actions CI/CD.
+
+`React` `Node.js` `Express` `Google Gemini API` `Tailwind CSS` `GitHub Actions`
+
+---
+
+### Tech Stack
+
+**Languages** &nbsp; JavaScript &nbsp; Python &nbsp; Java &nbsp; C++ &nbsp; C
+
+**Frontend** &nbsp; React &nbsp; HTML &nbsp; CSS &nbsp; Tailwind CSS
+
+**Backend** &nbsp; Node.js &nbsp; Express
+
+**AI/ML** &nbsp; Google Gemini API &nbsp; LangChain
+
+**Tools** &nbsp; Git &nbsp; Linux &nbsp; Android
+
+---
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=MaheshMadey&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" height="150" />
+&nbsp;
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MaheshMadey&layout=compact&theme=tokyonight&hide_border=true" height="150" />
+
+</div>
