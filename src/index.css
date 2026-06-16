@@ -125,6 +125,19 @@ img {
   width: 100%;
 }
 
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  .section {
+    padding: 72px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+
 /* Noise overlay */
 .noise-overlay {
   position: fixed;

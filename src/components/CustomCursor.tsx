@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 export default function CustomCursor() {
+  const isMobile = useIsMobile()
+  if (isMobile) return null
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const links = ['About', 'Experience', 'Stack', 'Projects', 'Contact']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const isMobile = useIsMobile()
   const { scrollYProgress } = useScroll()
   const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
@@ -28,6 +31,8 @@ export default function Navbar() {
     sections.forEach(s => s && observer.observe(s))
     return () => observer.disconnect()
   }, [])
+
+  const closeMenu = () => setMenuOpen(false)
 
   return (
     <>
@@ -58,16 +63,18 @@ export default function Navbar() {
           display: 'flex',
           alignItems: 'center',
           gap: 4,
-          padding: '8px 20px',
-          background: scrolled ? 'rgba(10,10,15,0.85)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          border: scrolled ? '1px solid rgba(99,102,241,0.15)' : '1px solid transparent',
+          padding: isMobile ? '8px 16px' : '8px 20px',
+          background: scrolled ? 'rgba(10,10,15,0.92)' : 'rgba(10,10,15,0.7)',
+          backdropFilter: 'blur(20px)',
+          border: scrolled ? '1px solid rgba(99,102,241,0.15)' : '1px solid rgba(255,255,255,0.07)',
           borderRadius: 50,
-          transition: 'background 0.4s, border 0.4s, backdrop-filter 0.4s',
+          transition: 'background 0.4s, border 0.4s',
+          width: isMobile ? 'calc(100vw - 24px)' : 'auto',
+          justifyContent: isMobile ? 'space-between' : 'flex-start',
         }}
       >
         {/* Logo */}
-        <a href="#hero" style={{ marginRight: 16 }}>
+        <a href="#hero">
           <div style={{
             width: 32, height: 32, borderRadius: 8,
             background: 'linear-gradient(135deg, #6366f1, #06b6d4)',
@@ -77,72 +84,176 @@ export default function Navbar() {
           }}>M</div>
         </a>
 
-        {links.map(link => (
-          <a
-            key={link}
-            href={`#${link.toLowerCase()}`}
+        {isMobile ? (
+          /* Hamburger button */
+          <button
+            onClick={() => setMenuOpen(o => !o)}
             style={{
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: 500,
-              color: activeSection === link.toLowerCase() ? '#6366f1' : 'rgba(226,232,240,0.6)',
-              background: activeSection === link.toLowerCase() ? 'rgba(99,102,241,0.1)' : 'transparent',
-              borderRadius: 20,
-              transition: 'color 0.2s, background 0.2s',
-              letterSpacing: '0.01em',
+              background: 'none',
+              border: 'none',
+              color: '#e2e8f0',
+              fontSize: 22,
+              cursor: 'pointer',
+              padding: '4px 8px',
+              lineHeight: 1,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? '✕' : '☰'}
+          </button>
+        ) : (
+          /* Desktop links */
+          <>
+            <div style={{ marginLeft: 12, display: 'flex', gap: 4 }}>
+              {links.map(link => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  style={{
+                    padding: '6px 14px',
+                    fontSize: 13,
+                    fontWeight: 500,
+                    color: activeSection === link.toLowerCase() ? '#6366f1' : 'rgba(226,232,240,0.6)',
+                    background: activeSection === link.toLowerCase() ? 'rgba(99,102,241,0.1)' : 'transparent',
+                    borderRadius: 20,
+                    transition: 'color 0.2s, background 0.2s',
+                    letterSpacing: '0.01em',
+                  }}
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="/Mahesh_Madey_Resume.pdf"
+              download
+              style={{
+                marginLeft: 4,
+                padding: '7px 16px',
+                fontSize: 13,
+                fontWeight: 600,
+                color: 'rgba(226,232,240,0.7)',
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 20,
+                transition: 'color 0.2s, border-color 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = '#e2e8f0'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = 'rgba(226,232,240,0.7)'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+              }}
+            >
+              ↓ Resume
+            </a>
+            <a
+              href="mailto:maheshmadey24@gmail.com"
+              style={{
+                marginLeft: 4,
+                padding: '7px 18px',
+                fontSize: 13,
+                fontWeight: 600,
+                color: '#fff',
+                background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                borderRadius: 20,
+                transition: 'opacity 0.2s, transform 0.2s',
+                boxShadow: '0 0 20px rgba(99,102,241,0.3)',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
+              onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+            >
+              Hire Me
+            </a>
+          </>
+        )}
+      </motion.nav>
+
+      {/* Mobile full-screen menu */}
+      <AnimatePresence>
+        {isMobile && menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 8500,
+              background: 'rgba(10,10,15,0.97)',
+              backdropFilter: 'blur(20px)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
             }}
           >
-            {link}
-          </a>
-        ))}
+            {links.map((link, i) => (
+              <motion.a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06 }}
+                onClick={closeMenu}
+                style={{
+                  fontSize: 28,
+                  fontWeight: 700,
+                  color: activeSection === link.toLowerCase() ? '#6366f1' : '#e2e8f0',
+                  padding: '12px 32px',
+                  borderRadius: 12,
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {link}
+              </motion.a>
+            ))}
 
-        <a
-          href="/Mahesh_Madey_Resume.pdf"
-          download
-          style={{
-            marginLeft: 4,
-            padding: '7px 16px',
-            fontSize: 13,
-            fontWeight: 600,
-            color: 'rgba(226,232,240,0.7)',
-            background: 'transparent',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: 20,
-            transition: 'color 0.2s, border-color 0.2s',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 5,
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.color = '#e2e8f0'
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.color = 'rgba(226,232,240,0.7)'
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-          }}
-        >
-          ↓ Resume
-        </a>
-        <a
-          href="mailto:maheshmadey24@gmail.com"
-          style={{
-            marginLeft: 4,
-            padding: '7px 18px',
-            fontSize: 13,
-            fontWeight: 600,
-            color: '#fff',
-            background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
-            borderRadius: 20,
-            transition: 'opacity 0.2s, transform 0.2s',
-            boxShadow: '0 0 20px rgba(99,102,241,0.3)',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
-          onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-        >
-          Hire Me
-        </a>
-      </motion.nav>
+            <div style={{ height: 24 }} />
+
+            <a
+              href="/Mahesh_Madey_Resume.pdf"
+              download
+              onClick={closeMenu}
+              style={{
+                padding: '12px 32px',
+                fontSize: 16,
+                fontWeight: 600,
+                color: 'rgba(226,232,240,0.7)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: 50,
+              }}
+            >
+              ↓ Resume
+            </a>
+            <a
+              href="mailto:maheshmadey24@gmail.com"
+              onClick={closeMenu}
+              style={{
+                padding: '12px 32px',
+                fontSize: 16,
+                fontWeight: 600,
+                color: '#fff',
+                background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                borderRadius: 50,
+                boxShadow: '0 0 24px rgba(99,102,241,0.4)',
+              }}
+            >
+              Hire Me
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

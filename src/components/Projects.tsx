@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const projects = [
   {
@@ -181,6 +182,7 @@ function TiltCard({ project }: { project: typeof projects[0] }) {
 
 export default function Projects() {
   const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>()
+  const isMobile = useIsMobile()
 
   return (
     <section id="projects" className="section">
@@ -212,7 +214,7 @@ export default function Projects() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(340px, 1fr))',
             gap: 20,
             alignItems: 'stretch',
           }}>

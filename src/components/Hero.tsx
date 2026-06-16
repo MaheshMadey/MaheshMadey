@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const floatingCode = [
   { text: '@SpringBootApplication', x: '6%', y: '18%', delay: 0 },
@@ -13,6 +14,7 @@ const floatingCode = [
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const isMobile = useIsMobile()
 
   // Subtle animated gradient orb using canvas
   useEffect(() => {
@@ -88,8 +90,8 @@ export default function Hero() {
         style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       />
 
-      {/* Floating code snippets */}
-      {floatingCode.map(({ text, x, y, delay }, i) => (
+      {/* Floating code snippets — hidden on mobile */}
+      {!isMobile && floatingCode.map(({ text, x, y, delay }, i) => (
         <motion.div
           key={i}
           initial={{ opacity: 0, y: 10 }}
@@ -216,7 +218,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}
+          style={{
+            display: 'flex',
+            gap: 12,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: 'center',
+          }}
         >
           <MagneticButton href="#projects" primary>
             View Projects
@@ -259,10 +268,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
           style={{
-            display: 'flex',
-            gap: 48,
-            justifyContent: 'center',
-            marginTop: 80,
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, auto)',
+            gap: isMobile ? '24px 16px' : '0 48px',
+            justifyContent: isMobile ? undefined : 'center',
+            marginTop: 64,
             paddingTop: 40,
             borderTop: '1px solid rgba(255,255,255,0.06)',
           }}

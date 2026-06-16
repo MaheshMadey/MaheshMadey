@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const companies = [
   {
@@ -60,6 +61,7 @@ const companies = [
 
 export default function Experience() {
   const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>()
+  const isMobile = useIsMobile()
 
   return (
     <section id="experience" className="section">
@@ -94,7 +96,7 @@ export default function Experience() {
               transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
               style={{
                 position: 'absolute',
-                left: 20,
+                left: isMobile ? 8 : 20,
                 top: 8,
                 width: 1,
                 background: 'linear-gradient(to bottom, #6366f1, #06b6d4, #8b5cf6)',
@@ -102,7 +104,7 @@ export default function Experience() {
               }}
             />
 
-            <div style={{ paddingLeft: 60 }}>
+            <div style={{ paddingLeft: isMobile ? 36 : 60 }}>
               {companies.map((co, ci) => (
                 <motion.div
                   key={co.company}
@@ -114,7 +116,7 @@ export default function Experience() {
                   {/* Timeline dot */}
                   <div style={{
                     position: 'absolute',
-                    left: -48,
+                    left: isMobile ? -28 : -48,
                     top: 18,
                     width: 16,
                     height: 16,
@@ -126,7 +128,7 @@ export default function Experience() {
 
                   <div
                     style={{
-                      padding: 32,
+                      padding: isMobile ? 20 : 32,
                       background: 'rgba(255,255,255,0.02)',
                       border: '1px solid rgba(255,255,255,0.07)',
                       borderRadius: 20,

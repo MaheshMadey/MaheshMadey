@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const TERMINAL_LINES = [
   { delay: 0, text: '$ ssh mahesh@siemens-portfolio --connect', color: 'rgba(148,163,184,0.5)' },
@@ -80,6 +81,7 @@ const links = [
 
 export default function Contact() {
   const { ref, isVisible } = useIntersectionObserver<HTMLDivElement>()
+  const isMobile = useIsMobile()
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
 
@@ -118,7 +120,7 @@ export default function Contact() {
             </p>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 48, alignItems: 'start' }}>
             {/* Left — terminal + links */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

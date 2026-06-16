@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const traits = [
   { icon: '⚡', label: 'Performance', desc: 'Building systems that scale to millions' },
@@ -42,15 +43,16 @@ function CountUp({ to, duration = 2000 }: { to: number; duration?: number }) {
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60])
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [60, -60])
 
   const { ref: sectionRef, isVisible } = useIntersectionObserver<HTMLDivElement>()
 
   return (
     <section id="about" className="section" ref={containerRef}>
       <div className="container">
-        <div ref={sectionRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+        <div ref={sectionRef} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 48 : 80, alignItems: 'center' }}>
           {/* Left — text */}
           <div>
             <motion.div
