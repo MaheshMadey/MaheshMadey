@@ -50,16 +50,20 @@ export default function Navbar() {
         }}
       />
 
+      {/* Outer div handles positioning so Framer Motion's y-transform doesn't clobber translateX(-50%) */}
+      <div style={{
+        position: 'fixed',
+        top: 12,
+        left: isMobile ? 12 : '50%',
+        right: isMobile ? 12 : 'auto',
+        transform: isMobile ? 'none' : 'translateX(-50%)',
+        zIndex: 9000,
+      }}>
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          position: 'fixed',
-          top: 12,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 9000,
           display: 'flex',
           alignItems: 'center',
           gap: 4,
@@ -69,7 +73,7 @@ export default function Navbar() {
           border: scrolled ? '1px solid rgba(99,102,241,0.15)' : '1px solid rgba(255,255,255,0.07)',
           borderRadius: 50,
           transition: 'background 0.4s, border 0.4s',
-          width: isMobile ? 'calc(100vw - 24px)' : 'auto',
+          width: isMobile ? '100%' : 'auto',
           justifyContent: isMobile ? 'space-between' : 'flex-start',
         }}
       >
@@ -176,6 +180,7 @@ export default function Navbar() {
           </>
         )}
       </motion.nav>
+      </div>
 
       {/* Mobile full-screen menu */}
       <AnimatePresence>
